@@ -8,7 +8,7 @@
         </el-breadcrumb>
         <!-- 卡片视图 -->
         <el-card>
-            <el-table :data="rightsList" border stripe>
+            <el-table :data="rightsList.slice((currentPage-1)*pagesize,currentPage*pagesize)" border stripe>
                 <el-table-column type="index"></el-table-column>
                 <el-table-column prop="authName" label="权限名称"></el-table-column>
                 <el-table-column prop="path" label="路径"></el-table-column>
@@ -19,7 +19,16 @@
                         <el-tag type="warning" v-else>三级</el-tag>
                     </template>
                 </el-table-column>
-            </el-table>    
+            </el-table>
+            <el-pagination
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
+            :current-page="currentPage"
+            :page-sizes="[5, 10, 20, 40]" 
+            :page-size="pagesize"         
+            layout="total, sizes, prev, pager, next, jumper"
+            :total="rightsList.length">   
+            </el-pagination>    
         </el-card>
     </div>
 </template>
@@ -29,7 +38,9 @@ export default {
     data(){
         return{
             //权限列表
-            rightsList:[]
+            rightsList:[],
+            currentPage:1, //初始页
+            pagesize:10,    //每页的数据
         }
     },
     created(){
@@ -37,6 +48,15 @@ export default {
         this.getRightsList()
     },
     methods:{
+        // 初始页currentPage、初始每页数据数pagesize和数据data
+        handleSizeChange: function (size) {
+              this.pagesize = size;
+              console.log(this.pagesize)//每页下拉显示数据
+        },
+        handleCurrentChange: function(currentPage){
+              this.currentPage = currentPage;
+              console.log(this.currentPage)  //点击第几页
+        },
         //获取用户权限列表
        async getRightsList(){
            const{data:res}=await this.$http.get('rights/list')
