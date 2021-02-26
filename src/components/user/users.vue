@@ -349,6 +349,7 @@ export default {
             this.setRoleDialogVisible=false
         },
         setRoleDialogClosed(){
+            //当关闭对话框的时候，重置下拉框中的内容
             this.selectedRoleId=''
             this.userInfo={}
         }
