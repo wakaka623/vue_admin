@@ -358,5 +358,16 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.cat_opt {
+  margin: 15px 0;
+}
+
+.el-tag {
+  margin: 10px;
+}
+
+.input-new-tag {
+  width: 120px;
+}
 
 </style>
