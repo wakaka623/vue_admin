@@ -33,5 +33,9 @@ body,
 .ql-editor {
   min-height: 300px;
 }
+/* 给添加商品按钮添加间距 */
+.btnAdd{
+  margin-top:15px;
+}
 
 
