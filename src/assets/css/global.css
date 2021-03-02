@@ -37,5 +37,8 @@ body,
 .btnAdd{
   margin-top:15px;
 }
+.el-cascader-menu{
+  height: 260px;
+}
 
 

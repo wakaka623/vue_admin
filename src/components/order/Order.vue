@@ -35,7 +35,7 @@
                     </template>
                 </el-table-column>
                 <el-table-column label="操作" width="125px">
-                    <template slot-scope="scope">
+                    <template>
                         <el-button size="mini" type="primary" icon="el-icon-edit" @click="showEditAddress"></el-button>
                         <el-button size="mini" type="success" icon="el-icon-location" @click="showProgress"></el-button>
                     </template>
@@ -57,7 +57,7 @@
             <!-- 添加表单 -->
             <el-form :model="addressForm" :rules="addressFormRules" ref="addressFormRef" label-width="100px">
                 <el-form-item label="省市区县" prop="address1">
-                    <el-cascader :options="cityData" v-model="addressForm.address1"></el-cascader>
+                    <el-cascader :options="cityData" v-model="addressForm.address1" clearable></el-cascader>
                 </el-form-item>
                 <el-form-item label="详细地址" prop="address2">
                     <el-input v-model="addressForm.address2"></el-input>
@@ -162,6 +162,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@import '../../plugins/timeline/timeline.css';
+@import '../../plugins/timeline-item/timeline-item.css';
 .el-cascader{
     width: 100%;
 }
